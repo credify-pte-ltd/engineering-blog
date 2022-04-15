@@ -4,8 +4,8 @@
 @charset "utf-8";
 
 // Typography
-$base-font-family: 'Sanomat Sans', Helvetica, Arial, sans-serif;
-$base-font-family-serif: 'Droid Serif', serif;
+$base-font-family: 'Roboto Slab', Helvetica, Arial, sans-serif;
+$base-font-family-serif: 'Roboto Slab', serif;
 
 // Font size
 $base-font-size:   18px;
@@ -22,16 +22,16 @@ $font-weight-bold: 700;
 
 $spacing-unit:     15px;
 
-$text-color:       #111;
-$background-color: #fdfdfd;
+$text-color:       #333333;
+$background-color: #fff;
 
-$brand-primary-color: #00b140;
-$brand-secondary-color: #488be4;
+$brand-primary-color: #5A24B3;
+$brand-secondary-color: #F2C94C;
 
-$grey-color:       #898d97;
-$grey-color-light: #ccd6dd;
+$grey-color:       #999999;
+$grey-color-light: #F1F1F1;
 $grey-color-dark:  #565d6b;
-$grey-color-darker: #363a45;
+$grey-color-darker: #340C4F;
 
 $on-palm:          768px;
 

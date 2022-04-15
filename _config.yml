@@ -1,21 +1,20 @@
 # Site settings
-title: Grab Tech
-email: engineering.blog@grab.com
+title: Credify Tech
+email: dev@credify.one
 description: > # this means to ignore newlines until "url:"
-  Grab's Engineering team solves critical transportation challenges and makes
-  transport freedom a reality for 620 million people in Southeast Asia.
-url: https://engineering.grab.com # the base hostname & protocol for your site
+  Credify's Engineering team builds an embedded finance platform in Southeast Asia.
+url: https://engineering.credify.one # the base hostname & protocol for your site
 
 social_media:
-  facebook: grabengineering
-  github:  grab
-  twitter: grabengineering
-  linkedin: grabapp
+  facebook: credify.one
+  github: credify-pte-ltd
+  twitter: CredifyOne
+  linkedin: credifyone
 
 disqus:
-  shortname: grabengineering
+  shortname: credify-pte-ltd
 
-google_analytics_id: UA-73060858-2
+google_analytics_id: G-9JZVXSGJL7
 
 # Post settings
 post:

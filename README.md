@@ -1,7 +1,7 @@
-Grab Engineering Blog
+Credify Engineering Blog
 ===========
 
-Welcome to Grab's official engineering blog where we share the good engineering practices in Grab and the things we engineers do that can benefit other engineers in the industry. Comments and feedback are welcome!
+Welcome to Credify's official engineering blog where we share the good engineering practices in Credify and the things we engineers do that can benefit other engineers in the industry. Comments and feedback are welcome!
 
 ### Getting Started
 
@@ -12,6 +12,8 @@ $ gem install bundler
 $ bundle install
 $ bundle exec jekyll serve
 ```
+
+_ruby version is v3.0.2._
 
 Navigate to `http://localhost:4000` to view the blog. A process runs in the background to watch for changes made to the code. Simply refresh the page to see the updated changes. If you are new to Jekyll, we would recommend that you check out their detailed documentation [here](https://jekyllrb.com/docs/home/).
 
@@ -55,13 +57,7 @@ That's it, happy blogging!
 
 ### Deployment
 
-Since we are using custom plugins (such as for authors), GitHub will not build and deploy the generated site for us. We use a custom gem `jgd` meant for deploying Jekyll pages manually.
-
-```sh
-$ jgd
-```
-
-This step is automatically carried out on Travis CI, you just need to commit on master to trigger the script. For more details, see the script in `.travis.yml`.
+This uses Netlify.
 
 ### License
 

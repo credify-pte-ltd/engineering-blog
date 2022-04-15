@@ -36,26 +36,28 @@
 }
 
 .site-title {
-  background-image: url('/img/grab-logo.png');
+  background-image: url('/img/credify-logo.png');
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
   display: inline-block;
-  height: 50px;
-  width: 96px;
+  height: 54px;
+  width: 129px;
   position: absolute;
+  margin-top: 4px;
 }
 
 .site-subtitle {
   color: $grey-color;
   display: inline-block;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: $font-weight-light;
   padding-top: 13px;
   vertical-align: top;
   width: 100px;
   position: absolute;
-  margin-left: 100px;
+  margin-left: 140px;
+  margin-top: 4px;
 }
 
 .site-nav {
