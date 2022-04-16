@@ -7,74 +7,83 @@ authors: [ngo275]
 categories: []
 tags: [OpenID Connect, Authentication]
 comments: true
-cover_photo: /img/introduction/team.png
+cover_photo: /img/oidc-explanation/oidc.png
 excerpt: "Nếu bạn đọc phần này, bạn sẽ có thể hiểu OpenID Connect ngay cả khi bạn không phải là nhà phát triển!"
 ---
 
 ## Lai lịch
 
-Làm thế nào để thực hiện chức năng xác thực? Làm thế nào để thực hiện chức năng đăng nhập? Các nhà phát triển ứng dụng và dịch vụ web hầu như luôn phải đối mặt với những thách thức này khi họ bắt đầu phát triển các dịch vụ mới. Ngay cả khi bạn thực hiện đăng nhập bằng địa chỉ email và mật khẩu của riêng mình, có thể rất thảm nếu bạn không quản lý mật khẩu một cách chính xác và các yêu cầu đăng nhập xã hội (đăng nhập Facebook, v.v.) có thể được thêm vào sau đó. Các chức năng xung quanh xác thực rất quan trọng vì chúng có tác động đáng kể đến cả bảo mật và UX. Đúng là số lượng các công cụ như Xác thực Firebase để dễ dàng triển khai một tập hợp các chức năng xung quanh xác thực ngày càng tăng, và chi phí phát triển cũng đang giảm. Tuy nhiên, ngay cả khi bạn sử dụng OAuth2 hoặc OpenID Connect thông qua các công cụ như vậy, vẫn có nhiều trường hợp bạn hiểu không đúng về OAuth2 hoặc OpenID Connect. Trong bài viết này, tôi sẽ giải thích cơ chế của OAuth2 và OpenID Connect, được sử dụng nhiều nhất để xác thực, cho những ai muốn hiểu rõ hơn về cơ chế xác thực.
+Làm thế nào để thực hiện chức năng xác thực? Các nhà phát triển ứng dụng và dịch vụ web hầu như luôn phải đối mặt với những thách thức này khi họ bắt đầu phát triển các dịch vụ mới. Ngay cả khi bạn triển khai đăng nhập bằng địa chỉ email / mật khẩu của riêng mình, có thể là một thảm họa nếu bạn không quản lý mật khẩu một cách chính xác và các yêu cầu về đăng nhập mạng xã hội (ví dụ: đăng nhập Facebook) có thể được thêm vào sau đó. Chức năng xung quanh xác thực rất quan trọng vì nó ảnh hưởng đáng kể đến cả bảo mật và UX. Thật vậy, các công cụ như Xác thực Firebase ngày càng trở nên sẵn có để dễ dàng triển khai một bộ hoàn chỉnh các chức năng liên quan đến xác thực và chi phí phát triển ngày càng giảm. Tuy nhiên, ngay cả khi bạn đang sử dụng OAuth 2.0 và OpenID Connect thông qua các công cụ như vậy, có lẽ nhiều trường hợp bạn chưa hiểu đúng về OAuth 2.0 và OpenID Connect. Trong bài viết này, chúng tôi sẽ giải thích cơ chế của OAuth 2.0 và OpenID Connect, là những hệ thống xác thực được sử dụng rộng rãi nhất, cho những ai muốn hiểu rõ hơn về các cơ chế xung quanh xác thực.
 
-## OAuth2 ở vị trí đầu tiên là gì?
+## OAuth 2.0 ở vị trí đầu tiên là gì?
 
-Trước khi nói về OpenID Connect, chúng ta hãy xem xét OAuth2. Khi số lượng các dịch vụ như Twitter và Facebook nơi người dùng tự thêm thông tin đã tăng lên, việc chia sẻ ID và liên kết các phiên giữa các dịch vụ khác nhau trở nên cần thiết. Ví dụ: dịch vụ của bạn muốn xem thông tin bạn bè trên Facebook của bạn. Trong trường hợp này, người dùng không nên chuyển chính thông tin đăng nhập Facebook (địa chỉ email và mật khẩu, v.v.) vào dịch vụ mà chỉ chia sẻ quyền truy cập các thông tin cần thiết trên Facebook. Theo cách này, OAuth là một cơ chế (giao thức) chỉ chia sẻ thành công các quyền mà không cần chuyển thông tin đăng nhập. OAuth được xây dựng vào năm 2007, nhưng một lỗ hổng đã được phát hiện vào năm 2009 và nó đã phát triển thành OAuth 2. OAuth1 và OAuth2 không tương thích, và bây giờ OAuth2 về cơ bản đã được sử dụng. Về mặt kỹ thuật, việc chuyển quyền theo cách này được gọi là "ủy quyền". OAuth2 là một giao thức để ủy quyền an toàn.
+Trước khi chúng ta chạm vào OpenID Connect, trước tiên chúng ta hãy xem xét OAuth 2.0: Khi ngày càng có nhiều dịch vụ như Twitter và Facebook cho phép người dùng thêm thông tin của riêng họ, cần phải có chia sẻ ID và tích hợp phiên giữa các dịch vụ khác nhau. Ví dụ, một dịch vụ có thể muốn tham khảo thông tin của bạn bè trên Facebook. Trong trường hợp này, người dùng không nên chuyển chính thông tin đăng nhập Facebook (ví dụ: địa chỉ email và mật khẩu) vào dịch vụ đó mà chỉ nên chia sẻ quyền truy cập đối với thông tin Facebook cần thiết. OAuth được phát triển vào năm 2007, nhưng một lỗ hổng đã được tìm thấy vào năm 2009 và nó đã phát triển thành OAuth 2.0. Điều này cũng đúng với danh mục "khác". Về mặt kỹ thuật, loại ủy quyền này được gọi là "ủy quyền"; OAuth 2.0 là một giao thức để ủy quyền an toàn.
 
-Bây giờ chúng ta hãy xem xét luồng của OAuth2.
+Bây giờ chúng ta sẽ xem xét luồng OAuth 2.0.
 
-Công ty TNHH ABC muốn tham khảo các tài liệu của Alice do Công ty TNHH XYZ lưu giữ.
+Công ty ABC muốn tham khảo các tài liệu Alice do Công ty XYZ lưu giữ.
 
-1. Công ty TNHH ABC hỏi khách hàng của mình, Alice, nếu họ có tài khoản với XYZ Co., Ltd.
+1. Công ty ABC hỏi khách hàng Alice của mình nếu cô ấy có tài khoản với Công ty XYZ.
 2. Alice trả lời "CÓ".
-3. Công ty TNHH ABC hỏi Alice, "Nếu vậy, tôi muốn tài liệu của bạn được lưu trữ tại Công ty TNHH XYZ, nhưng bạn có thể cho tôi chìa khóa nơi lưu trữ tài liệu không?"
-4. Alice đến Công ty TNHH XYZ để lấy chìa khóa.
-5. Tại cửa sổ của Công ty TNHH XYZ, Alice xác nhận danh tính của mình và xin vào Công ty TNHH ABC để làm chìa khóa lưu trữ tài liệu.
-6. Vào một ngày sau đó, cửa sổ của Công ty TNHH XYZ sẽ gửi một bức thư đến Công ty TNHH ABC với nội dung “Vui lòng đến nhận chìa khóa vì nó đã hoàn thành”.
-7. Công ty TNHH ABC Mang bức thư đến cửa sổ của Công ty TNHH XYZ, nói với họ rằng bạn là nhân viên của Công ty TNHH ABC và nhận chìa khóa của Alice để đổi lấy bức thư. Nói một cách chính xác, đó không phải là một chiếc chìa khóa đơn lẻ, mà là hình ảnh của một chiếc móc chìa khóa với chìa khóa là “nơi lưu trữ tài liệu của Alice”.
-8. Một nhân viên của Công ty TNHH ABC lấy chìa khóa đến vị trí lưu trữ tài liệu của Công ty TNHH XYZ và sử dụng chìa khóa để lấy các tài liệu liên quan đến Alice từ vị trí lưu trữ.
-9. Nhân viên Công ty TNHH ABC in hồ sơ tại chỗ và về nhà. Công ty TNHH ABC đã lấy được thành công tài liệu của Alice từ Công ty TNHH XYZ.
+3. Công ty ABC hỏi Alice, "Sau đó, chúng tôi muốn tài liệu của bạn, được lưu giữ tại Công ty XYZ. Bạn có thể cho chúng tôi chìa khóa nơi lưu giữ tài liệu không?"
+4. Alice đến Công ty XYZ để lấy chìa khóa.
+5. Tại bàn khách hàng của Công ty XYZ, Alice nộp đơn đến Công ty ABC để xác nhận danh tính của mình và làm chìa khóa nơi lưu trữ tài liệu của cô.
+6. Bàn khách hàng của Công ty XYZ sau đó sẽ gửi một bức thư đến Công ty ABC với nội dung “Chìa khóa đã sẵn sàng, hãy đến lấy.
+7. Một nhân viên của Công ty ABC mang bức thư đến Công ty XYZ và nói với họ rằng anh ta là nhân viên của Công ty ABC và để đổi lấy lá thư, anh ta sẽ nhận được một chìa khóa thông tin của Alice. Nói một cách chính xác, bản thân chiếc chìa khóa không phải là một chiếc chìa khóa, mà là một chùm chìa khóa với nhiều chìa khóa dẫn đến "vị trí lưu trữ tài liệu của Alice".
+8. Một nhân viên của Công ty ABC lấy chìa khóa đến vị trí lưu trữ của Công ty XYZ và sử dụng chìa khóa để lấy các tài liệu liên quan đến Alice từ vị trí lưu trữ.
+9. Nhân viên của Công ty ABC in tài liệu ngay tại chỗ và rời đi. Công ty ABC lấy thành công các tài liệu của Alice từ Công ty XYZ.
 
-Tại thời điểm này, bạn có thể tự hỏi, "Alice nên đăng ký một bản sao của tài liệu mà không cần làm chìa khóa ngay từ đầu và cung cấp cho Công ty TNHH ABC một bản sao của tài liệu đó thay vì chìa khóa." chính xác nơi mà OpenID Connect xuất hiện. Điều này sẽ được mô tả sau.
+<div class="post-image-section"><figure>
+  <img src="/img/oidc-explanation/keychain.png" alt="Flow" style="width:60%">
+  </figure>
+</div>
 
-Bằng cách cấp khóa, Alice có thể dễ dàng tham khảo các tài liệu mới nhất mà không cần thực hiện bất kỳ thao tác đặc biệt nào ngay cả khi tài liệu đã được cập nhật (nhân viên chỉ phải đến XYZ Co., Ltd. một lần nữa). Ngoài ra, nếu Công ty TNHH ABC muốn cập nhật tài liệu, bạn có thể cập nhật tài liệu gốc trong Công ty TNHH XYZ bằng cách có khóa. Nói một cách chính xác, chiếc chìa khóa này giống như một chiếc móc chìa khóa và chứa một chiếc chìa khóa để đặt vào nơi được chỉ định bởi Alice. Nếu Alice giữ các tài liệu ở năm vị trí riêng biệt, thì các chìa khóa của năm vị trí lưu trữ sẽ bị dính vào nhau.
 
-Hãy kiểm tra các ký tự và thuật ngữ thực tế xuất hiện ở đây.
+Tại thời điểm này, bạn có thể tự hỏi, "Tại sao Alice không đăng ký bản sao của chính tài liệu mà không làm chìa khóa ngay từ đầu và đưa cho Công ty ABC một bản sao của tài liệu thay vì chìa khóa?" Đó chính xác là nơi OpenID Connect xuất hiện. Điều này được mô tả bên dưới.
 
+Bằng cách tạo một khóa, khi một tài liệu được cập nhật, Alice không làm gì đặc biệt và ABC Inc. có thể dễ dàng tham khảo tài liệu mới nhất (nhân viên chỉ cần đến Công ty XYZ với khóa lại). Ngoài ra, nếu Công ty ABC muốn cập nhật tài liệu của Alice, khóa này cho phép họ cập nhật tài liệu gốc tại Công ty XYZ. Chìa khóa này hoàn toàn giống như một vòng chìa khóa, chứa các chìa khóa cho phép truy cập vào các vị trí bị hạn chế. Nếu Alice giữ tài liệu của mình ở năm vị trí khác nhau, thì mỗi vòng chìa khóa sẽ chứa năm chìa khóa dẫn đến năm vị trí lưu trữ khác nhau.
+
+Chúng tôi sẽ xem xét các ký tự và điều khoản thực tế xuất hiện ở đây.
+
+| Trong ví dụ | Thuật ngữ OIDC |
+|:---|:---:|
 | Alice | Resource owner |
-| Công ty TNHH ABC | Client |
-| Tại cửa sổ của Công ty TNHH XYZ | Authorization server |
-| Địa điểm lưu trữ tài liệu của Công ty TNHH XYZ | Resource server |
-| Một lá thư được gửi qua cửa sổ XYZ của công ty | Authorization code |
-| Thông tin xác minh danh tính được sử dụng khi chứng minh rằng nhân viên của Công ty TNHH ABC thực sự là nhân viên của ABC tại cửa sổ của Công ty TNHH XYZ. | Client secret |
-| Bộ sưu tập chìa khóa mà Công ty TNHH ABC nhận được (móc chìa khóa) | Access token |
+| Công ty ABC | Client |
+| Bàn khách hàng của Công ty XYZ | Authorization server |
+| Lưu trữ tài liệu của Công ty XYZ | Resource server |
+| Thư gửi qua bàn khách hàng của Công ty XYZ | Authorization code |
+| Thông tin nhận dạng được bàn khách hàng của Công ty XYZ sử dụng để xác minh rằng một nhân viên của Công ty ABC thực sự là nhân viên của Công ty ABC. | Client secret |
+| Bộ sưu tập chìa khóa (móc khóa) mà Công ty ABC nhận làm. | Access token |
 | Các khóa riêng lẻ trong chuỗi khóa | Scope |
 | Tài liệu | Resource |
-| Quy trình trong đó bước 6 được thực hiện rõ ràng và khóa chỉ được chuyển trực tiếp | Authorization code flow |
-| Quy trình bỏ qua bước 6 và gửi khóa đột ngột qua thư | Implicit flow |
-| Thư từ XYZ Co., Ltd. | Redirect URL |
+| Luồng trong đó bước 6 được thực hiện một cách rõ ràng và các khóa chỉ được trao tận tay. | Authorization code flow |
+| Luồng để bỏ qua bước 6 và đột ngột gửi khóa qua thư. | Implicit flow |
+| Thư từ Công ty XYZ. | Redirect URL |
 
 
-## Lạm dụng OAuth2
+## Lạm dụng OAuth 2.0
 
-OAuth2 là một giao thức rất hữu ích, nhưng hành động bình tĩnh chuyển khóa cũng rất nguy hiểm. Nếu Công ty TNHH ABC là một tổ chức độc hại và yêu cầu Alice truy cập vào tài khoản ngân hàng của Alice và Alice đăng ký chìa khóa mà không cần suy nghĩ, tiền từ tài khoản ngân hàng của Alice thậm chí có khả năng bị lấy đi. Hơn nữa, có nhiều trường hợp bạn chỉ muốn thông tin của Alice thay vì cần khóa để sử dụng tài nguyên của Alice và OAuth2 là một giao thức ủy quyền (ví dụ: quản lý thẩm quyền của Alice), nhưng nó xác thực. (Ví dụ: xác minh danh tính của Alice) cũng được sử dụng rất thường xuyên.
+OAuth 2.0 là một giao thức rất hữu ích, nhưng hành động bình tĩnh bàn giao khóa cũng rất nguy hiểm. Nếu Công ty ABC là một tổ chức độc hại và yêu cầu Alice truy cập vào tài khoản ngân hàng của cô ấy và Alice đăng ký khóa mà không cần suy nghĩ, thậm chí có khả năng tiền có thể bị lấy từ tài khoản ngân hàng của Alice. Hơn nữa, có nhiều trường hợp khóa không cần thiết để sử dụng tài nguyên của Alice, mà thông tin của Alice chỉ là mong muốn và mặc dù OAuth 2.0 là giao thức ủy quyền (ví dụ: quản lý quyền của Alice), nó cũng được sử dụng sai để xác thực (ví dụ: Xác minh danh tính của Alice) trong nhiều trường hợp.
 
 ## OpenID Connect là gì?
 
-Để đối phó với tình huống này, OpenID Connect (sau đây gọi là OIDC) là một phần mở rộng của OAuth2 kết hợp xác thực làm tiêu chuẩn.
+Để đối phó với tình huống này, OpenID Connect (sau đây gọi là OIDC) là một phần mở rộng của OAuth 2.0 kết hợp xác thực làm tiêu chuẩn.
 
 ```
-3. Công ty TNHH ABC hỏi Alice, "Nếu vậy, tôi muốn tài liệu của bạn được lưu trữ tại Công ty TNHH XYZ, nhưng bạn có thể cho tôi chìa khóa nơi lưu trữ tài liệu không?"
+3. Công ty ABC hỏi Alice, "Sau đó, chúng tôi muốn tài liệu của bạn, được lưu giữ tại Công ty XYZ. Bạn có thể cho chúng tôi chìa khóa nơi lưu giữ tài liệu không?"
 ```
 
-Trong OpenID Connect, ở bước 3 của OAuth2 trước đó, thay vì khóa, "bản sao tài liệu" đã được thêm vào các tùy chọn. Nếu bạn chỉ định "bản sao của tài liệu" ở đây,
+OpenID Connect cũng đã thêm "bản sao tài liệu" như một tùy chọn trong bước 3 của OAuth 2.0, thay vì các khóa, như đã đề cập trước đó. Ở đây, chỉ định "bản sao của tài liệu" sẽ là,
 
 ```
-6. Vào một ngày sau đó, cửa sổ của Công ty TNHH XYZ sẽ gửi một bức thư đến Công ty TNHH ABC với nội dung "Vui lòng đến nhận chìa khóa vì đã hoàn thành."
+6. Bàn khách hàng của Công ty XYZ sau đó sẽ gửi một bức thư đến Công ty ABC với nội dung “Chìa khóa đã sẵn sàng, hãy đến lấy.
 ```
 
-Trong bước 6, bạn sẽ nhận được một bản sao của tài liệu. Nếu Công ty TNHH ABC chỉ muốn thông tin có thể xác nhận danh tính của Alice, thì khi bạn có bản sao của tài liệu này, bạn không phải thực hiện các bước còn lại. Bạn không cần phải phát hành chìa khóa. Tất nhiên, bản sao văn bản này có chữ ký của Công ty TNHH XYZ để nhà xuất bản xác nhận. Bản sao của tài liệu này được gọi là "Mã thông báo ID" và OIDC đã xác thực tiêu chuẩn hóa bằng cách đưa Mã thông báo ID vào OAuth2 theo cách này. Tất nhiên, bạn có thể tạo khóa cùng lúc khi sao chép tài liệu này và quy trình tạo khóa giống như OAuth2.
+Trong bước 6 này, bạn sẽ nhận được một bản sao của tài liệu. Nếu tất cả những gì Công ty ABC muốn là thông tin để xác minh danh tính của Alice, thì khi họ đã có bản sao của tài liệu này, họ không cần thực hiện các bước còn lại. Họ thậm chí sẽ không phải bận tâm phát hành một chìa khóa. Tất nhiên, bản sao của tài liệu này được ký bởi Công ty XYZ để người phát hành có thể được xác nhận. Bản sao của tài liệu này được gọi là "Mã thông báo ID" và OIDC đã tiêu chuẩn hóa quy trình xác thực bằng cách đưa Mã thông báo ID vào OAuth 2.0. Tất nhiên, bản sao của tài liệu này và quá trình tạo khóa có thể được thực hiện cùng một lúc và quy trình tạo khóa giống như trong OAuth 2.0.
 
-Yêu cầu từ Công ty TNHH ABC ở bước 3 được gọi là yêu cầu ủy quyền và yêu cầu thực sự chuyển trực tiếp đến máy chủ Ủy quyền (cửa sổ của Công ty TNHH XYZ) thay vì Alice. Khách hàng (ABC Co., Ltd.) thực hiện các cài đặt khác nhau trong yêu cầu ủy quyền. Cho dù đó là Luồng ngầm hay luồng mã Ủy quyền, lựa chọn phạm vi (khóa riêng lẻ được gắn với chuỗi khóa) bạn muốn sử dụng, phương pháp nào được sử dụng khi máy chủ Ủy quyền thực sự gửi thông tin đến Máy khách (phương pháp gửi thư cụ thể), Hãy cài đặt chi tiết chẳng hạn như.
+Yêu cầu từ Công ty ABC trong Bước 3 được gọi là "yêu cầu ủy quyền", thực tế chuyển trực tiếp đến "Máy chủ ủy quyền" (bàn khách hàng của Công ty XYZ), không phải cho Alice. Trong yêu cầu ủy quyền, "Khách hàng" (Công ty ABC) định cấu hình các cài đặt khác nhau, chẳng hạn như sử dụng "Quy trình ngầm định" hay "Quy trình mã ủy quyền", lựa chọn phạm vi (các khóa được gắn với người giữ khóa trong ví dụ trên ) được sử dụng và cách thông tin được gửi đến khách hàng (phương pháp gửi thư cụ thể), v.v.
 
 ## Tóm lược
 
-Theo cách này, OIDC dựa trên OAuth2, vốn ban đầu đã tiêu chuẩn hóa việc tạo mã thông báo truy cập và chuyển giao quyền thông qua mã thông báo truy cập, đồng thời cũng có thể xử lý Mã thông báo ID. Nhiều tổ chức sử dụng OIDC an toàn và đơn giản hơn các giao thức xác thực và ủy quyền khác, và tính đến năm 2022, nó là giao thức được sử dụng nhiều nhất để xác thực và ủy quyền. Trong phần tiếp theo, chúng ta sẽ xem xét việc triển khai chức năng đăng nhập bằng OIDC.
+
+OIDC dựa trên OAuth 2.0, ban đầu đã tiêu chuẩn hóa việc tạo mã thông báo truy cập và chuyển giao quyền thông qua mã thông báo truy cập và hiện cũng có thể xử lý ID Token. Đây là giao thức được sử dụng rộng rãi nhất để xác thực và ủy quyền vào năm 2022. Trong phần tiếp theo, chúng ta sẽ xem xét việc triển khai các chức năng đăng nhập bằng OIDC.
