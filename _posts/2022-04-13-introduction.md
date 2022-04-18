@@ -24,7 +24,7 @@ serviceX thúc đẩy các nền tảng số có được những dịch vụ h�
 Giải pháp công nghệ serviceX hoạt động như một nền tảng, mang các dịch vụ tài chính từ những đối tác tài chính đến các nền tảng thị trường. Credify hiện có các sản phẩm tài chính nhúng dựa trên giải pháp serviceX như sau: 
 
 
-#### Sản phẩm vay tiền mặt (Cash loan):
+#### 1 - Sản phẩm vay tiền mặt (Cash loan):
 
 _Market_ (thị trường) (VD:  Ứng dụng thương mại điện tử) có thể cung cấp một khoản vay tiền mặt tức thì thông qua serviceX. Người dùng đủ điều kiện trên nền tảng của họ sẽ được giới thiệu các ưu đãi  và hoàn thiện đăng ký sản phẩm tài chính ngay trên nền tảng mà không cần thoát ra khỏi nền tảng ứng dụng đang dùng; trong khi các quảng cáo thông thường hay yêu cầu người dùng truy cập trình duyệt hoặc thậm chí vào Kho ứng dụng để tải xuống ứng dụng mới. Việc đăng ký cho khoản vay sẽ tận dụng dữ liệu được quản lý bởi _Market_ này, vì vậy người dùng sẽ không phải trải qua bước đăng nhập (onboard) tẻ nhạt như vốn có.
 
