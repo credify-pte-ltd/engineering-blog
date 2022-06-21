@@ -3,7 +3,7 @@ layout: post
 id: 2022-04-18-oidc-explanation
 title: OpenID Connect là gì?
 date: 2022-06-21 00:20:00
-authors: [ngo275]
+authors: [ngo275,danh.nguyen]
 categories: []
 tags: [OpenID Connect, Authentication]
 comments: true
@@ -27,10 +27,10 @@ Công ty ABC muốn tham khảo các tài liệu của Alice do Công ty XYZ lư
 2. Alice trả lời "CÓ".
 3. Công ty ABC hỏi Alice, "Vậy, chúng tôi muốn xem các tài liệu của bạn được lưu giữ tại Công ty XYZ. Bạn có thể cho chúng tôi chìa khóa tủ tài liệu được không?"
 4. Alice đến Công ty XYZ để xin cấp chìa khóa cho công ty ABC.
-5. Tại _quầy dịch vụ khách hàng_ của Công ty XYZ, Alice trình bày là muốn chia sẻ thông tin danh tính cho Công ty ABC  và muốn đưa cho họ chìa khóa tủ tài liệu của cô.
-6. _Quầy dịch vụ khách hàng_ của Công ty XYZ sau đó sẽ gửi một bức thư đến Công ty ABC với nội dung “Chìa khóa đã sẵn sàng, hãy đến lấy.
-7. Một nhân viên của Công ty ABC mang _bức thư_ đến Công ty XYZ và nói với họ rằng anh ta là nhân viên của Công ty ABC và đưa _lá thư_ đó để nhận thông tin danh tính và chìa khoá tủ tài liệu của Alice. Nói một cách chính xác, bản thân chìa khóa không phải là một chiếc đơn lẻ, mà là một chùm chìa khóa với nhiều chìa khóa con dẫn đến "những tủ tài liệu khác nhau của Alice".
-8. Một nhân viên của Công ty ABC lấy chìa khóa đến _kho lưu trữ_ của Công ty XYZ và sử dụng chìa khóa để lấy các tài liệu liên quan đến Alice từ tủ tài liệu.
+5. Tại _**quầy dịch vụ khách hàng**_ của Công ty XYZ, Alice trình bày là muốn chia sẻ thông tin danh tính cho Công ty ABC  và muốn đưa cho họ chìa khóa tủ tài liệu của cô.
+6. _**Quầy dịch vụ khách hàng**_ của Công ty XYZ sau đó sẽ gửi một bức thư đến Công ty ABC với nội dung “Chìa khóa đã sẵn sàng, hãy đến lấy.
+7. Một nhân viên của Công ty ABC mang _**bức thư**_ đến Công ty XYZ và nói với họ rằng anh ta là nhân viên của Công ty ABC và đưa _**lá thư**_ đó để nhận thông tin danh tính và chìa khoá tủ tài liệu của Alice. Nói một cách chính xác, bản thân chìa khóa không phải là một chiếc đơn lẻ, mà là một chùm chìa khóa với nhiều chìa khóa con dẫn đến "những tủ tài liệu khác nhau của Alice".
+8. Một nhân viên của Công ty ABC lấy chìa khóa đến _**kho lưu trữ**_ của Công ty XYZ và sử dụng chìa khóa để lấy các tài liệu liên quan đến Alice từ tủ tài liệu.
 9. Nhân viên của Công ty ABC sao chép tài liệu tại chỗ và rời đi. Công ty ABC lấy thành công các tài liệu của Alice từ Công ty XYZ.
 
 <div class="post-image-section"><figure>

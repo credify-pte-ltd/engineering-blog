@@ -8,3 +8,7 @@ dung.le:
 thi.nguyen:
   name: Thi Nguyen
   thumbnail: /img/authors/thi.nguyen.png
+danh.nguyen:
+  name: Danh Nguyen
+  thumbnail: /img/authors/danh.nguyen.jpeg
+  github: danhnn
