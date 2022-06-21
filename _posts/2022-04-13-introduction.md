@@ -1,50 +1,51 @@
 ---
 layout: post
 id: 2022-04-13-introduction
-title: Welcome to Credify Engineering blog!
+title: Chào mừng đến với Blog kỹ thuật của Credify!
 date: 2022-04-13 00:20:00
-authors: [ngo275]
+authors: [ngo275,thi.nguyen,dung.le]
 categories: []
 tags: [Introduction]
 comments: true
 cover_photo: /img/introduction/team.png
-excerpt: "Credify Engineering team will share what we do and how we solve technical difficulties in this website!"
+excerpt: "Nhóm kỹ thuật của Credify sẽ chia sẻ thông tin về cách giải quyết các vấn đề khó tại trang này!"
 ---
 
-## Credify's products
+## Sản phẩm của Credify
 
-The world is rapidly shifting all aspects of life and activity into online ecosystems. In SEA alone, smartphone proliferation rates outpace bank account holdings by a wide margin, and yet access to fair credit and insurance remains a big problem, as these very traditional industries struggle to keep pace with the new digital trends. With 2.5 billion people around the globe lacking traditional credit scores, yet generating more and more relevant information in the form of alternative data as they utilize digital native services, we have an opportunity to leverage this data to empower the masses with greater financial choices at their very point of need. This is the essence of "embedded finance" and this is exactly what we are innovating at Credify.
+Thế giới đang nhanh chóng chuyển tất cả các khía cạnh trong cuộc sống sang hệ thống trực tuyến. Chỉ riêng tại Đông Nam Á, tỷ lệ người sử dụng điện thoại thông minh vượt xa tỷ lệ số người có tài khoản ngân hàng, cũng như là khả năng tiếp cận tín dụng công bằng và bảo hiểm vẫn tồn đọng vấn đề lớn vì những ngành công nghiệp rất truyền thống này đang vật lộn để bắt kịp với các xu hướng kỹ thuật số mới. Hơn 2.5 tỷ người trên toàn cầu thiếu điểm tín dụng theo cách truyền thống nhưng đang tạo ra các alternative data (thông tin dưới dạng dữ liệu thay thế) khi họ sử dụng các dịch vụ kỹ thuật số, chúng ta hoàn toàn có cơ hội tận dụng dữ liệu này để trao quyền đến mọi người với những lựa chọn tài chính tốt hơn tại những thời điểm cần thiết nhất. Đây là bản chất của “tài chính nhúng” và chính xác là những gì chúng tôi đang đổi mới tại Credify.
 
-We offer a product, **serviceX**, to unleash the power of embedded finance. 
+Chúng tôi mang đến giải pháp serviceX nhằm mục tiêu lan tỏa sức mạnh của tài chính nhúng.
 
-serviceX enables digital ecosystem operators to offer attractive services provided by third parties, built on top of our universal identity platform. Example services are BNPL (Buy Now, Pay Later) Gateway, integrated banking, micro insurance, etc.
+serviceX thúc đẩy các nền tảng số có được những dịch vụ hấp dẫn từ các đối tác tài chính thứ ba, được xây dựng trên nền tảng nhận diện số của Credify. Một số sản phẩm điển hình dựa trên serviceX như thanh toán BNPL (Mua trước trả sau), tích hợp với ngân hàng, bảo hiểm, ...
 
-### Services on serviceX
+### Dịch vụ serviceX
 
-As serviceX works as a hub that offers services provided by our partners, we have several use cases for various business. Here are our services available on our platform.
-
-#### 1 - Cash loan
-
-_Markets_ (e.g. E-Commerce App) can offer an instant loan through serviceX. Users on their platform will be presented with eligible offers and apply for them in that context without going outside of this platform. The ordinary ads require them to go to a browser or even App Store to download a new app! This application for the loan will take advantage of data managed by this Market, so the users will not have to experience the tedious onboarding step as it is.
-
-#### 2 - Insurance
-
-_Markets_ (e.g. House cleaning app) can offer house insurance to their end-users based on their transaction history or their loyalty to the platform. This insurance purchase will be completed inside the platforms.
-
-#### 3 - BNPL Gateway
-
-_Markets_ can place "Pay with Credify" on their checkout page and they can enable their users to pay with BNPL. We work with multiple financial institutions to deliver BNPL options to users on the Markets. They can select whichever financial institution that offers the best terms to them.
+Giải pháp công nghệ serviceX hoạt động như một nền tảng, mang các dịch vụ tài chính từ những đối tác tài chính đến các nền tảng thị trường. Credify hiện có các sản phẩm tài chính nhúng dựa trên giải pháp serviceX như sau: 
 
 
-### Business model
+#### 1 - Sản phẩm vay tiền mặt (Cash loan):
 
-We have been focused on the Vietnam market about serviceX sales.
+_Market_ (thị trường) (VD:  Ứng dụng thương mại điện tử) có thể cung cấp một khoản vay tiền mặt tức thì thông qua serviceX. Người dùng đủ điều kiện trên nền tảng của họ sẽ được giới thiệu các ưu đãi  và hoàn thiện đăng ký sản phẩm tài chính ngay trên nền tảng mà không cần thoát ra khỏi nền tảng ứng dụng đang dùng; trong khi các quảng cáo thông thường hay yêu cầu người dùng truy cập trình duyệt hoặc thậm chí vào Kho ứng dụng để tải xuống ứng dụng mới. Việc đăng ký cho khoản vay sẽ tận dụng dữ liệu được quản lý bởi _Market_ này, vì vậy người dùng sẽ không phải trải qua bước đăng nhập (onboard) tẻ nhạt như vốn có.
 
-We offer serviceX as SaaS, so we don't charge the onboarding but charge only for the actual usage. In principle, we take a certain percentage of generated value (the following diagram says 30% as an example).
+#### 2 – Bảo hiểm:
 
-For example, *Service Providers* (B) utilize serviceX to offer products and services (e.g. cash loan, insurance) to users in *Markets* (A), paying a flat fee to *Markets* for access to their users (placement fee) and a success fee in case of successful user acquisition. We will take 30% of this success fee.
+_Market_ (VD: Ứng dụng dọn dẹp nhà cửa) có thể cung cấp bảo hiểm Nhà ở cho người dùng cuối dựa trên lịch sử giao dịch hoặc sự trung thành sử dụng nền tảng đó. Việc mua bảo hiểm này sẽ được hoàn thành tại giao diện của _Market_ đó.
 
-On the other hand, in the case of the BNPL Gateway, *Markets* (B) will have their users enjoy BNPL, and *Service Providers (Financial Institutes behind the BNPL Gateway)* (A) will receive a fee from *Markets* (B) as MDR (Merchant Discount Rate). We will take a certain percentage of this MDR.
+#### 3 – Cổng thanh toán BNPL: 
+
+_Market_ có thể nhúng “Thanh toán bằng Credify BNPL” tại bước thanh toán và cho phép người dùng thanh toán bằng BNPL. Credify hiện đang làm việc với nhiều công ty tài chính để cung cấp BNPL cho người dùng ngay trên _Market_ đó. Người dùng có thể chọn bất kỳ sản phẩm của công ty tài chính nào cung cấp các điều khoản tốt nhất cho họ.
+
+
+### Mô hình kinh doanh
+
+Với thị trường Việt Nam, chúng tôi tập trung chủ yếu phát triển sản phẩm serviceX.
+
+Chúng tôi cung cấp giải pháp serviceX dưới dạng Phần mềm dạng SaaS (software-as-a-service). Vì vậy chúng tôi không tính phí tích hợp, mà chỉ dựa trên giao dịch thành công. Về nguyên tắc, chúng tôi lấy tỷ lệ % dựa trên tổng doanh thu của giao dịch thành công. Biểu đồ sau đây lấy tỷ lệ 30% làm ví dụ).
+
+VD: _Service Provider_ (B) sử dụng serviceX để cung cấp các sản phẩm tài chính (ví dụ: cho vay tiền mặt, bảo hiểm) cho người dùng trong _Market_ (A), trả một khoản phí cố định cho _Market_ để tiếp cận người dùng của họ (placement fee) và phí hoa hồng giao dịch trong trường hợp chuyển đổi người dùng thành công. Chúng tôi sẽ lấy 30% của phí hoa hồng giao dịch này.
+
+Mặt khác, trong trường hợp sử dụng BNPL, _Market_ (B) sẽ để người dùng tận hưởng BNPL và _Service Provider_ (công ty tài chính đằng sau cổng thanh toán BNPL) (A) sẽ nhận được một khoản phí từ _Market_ (B) theo MDR (_Market_ Discount rate). Chúng tôi sẽ lấy một tỷ lệ nhất định trong MDR này.
 
 <div class="post-image-section"><figure>
   <img src="/img/introduction/serviceX-business-model.png" alt="Flow" style="width:60%">
@@ -52,26 +53,27 @@ On the other hand, in the case of the BNPL Gateway, *Markets* (B) will have thei
 </div>
 
 
-## Credify's culture
+## Văn hóa của Credify
 
-_Vision: Be a world-leading embedded finance platform_
+__Trở thành nền tảng tài chính nhúng hàng đầu thế giới.__
 
-### Transparent communication
+### Giao tiếp minh bạch
 
-At Credify, we extremely value transparent communication and encourage all members to contribute freely their opinions and ideas to improve all aspects of our business, from management to end-user engagement.
+Tại Credify, chúng tôi cực kỳ coi trọng giao tiếp minh bạch và khuyến khích tất cả các thành viên tự do đóng góp các ý kiến và ý tưởng của họ nhằm hoàn thiện tất cả các khía cạnh trong kinh doanh của chúng tôi, từ quản lý đến tương tác người dùng.
 
-### Self-starter
+### Tự khởi đầu
 
-We encourage every Credify member to take personal initiative and ownership in our vision and strategy to bring about real-world impact through the technologies we deliver. This is one of the most important aspects of working at Credify. We do not micro-manage people, rather we expect our valued members to think for themselves and grow together. Moreover, we encourage each other to proactively engage in continuous learning and the acquisition of new skillsets through hands-on experiences.
+Chúng tôi khuyến khích mọi thành viên Credify chủ động và làm chủ về tầm nhìn và chiến lược của chúng tôi nhằm mang lại những tác động thực thông qua công nghệ chúng tôi cung cấp. Đây là một trong những khía cạnh quan trọng nhất khi làm việc tại Credify. Chúng tôi không quản lý con người vi mô, thay vào đó chúng tôi mong các thành viên quý mến của mình hãy nghĩ về chính họ và cùng nhau phát triển. Hơn nữa,chúng tôi khuyến khích nhau chủ động tham gia học hỏi liên tục và tích lũy các kỹ năng mới thông qua kinh nghiệm thực hành.
 
-### Product-driven mindset
+### Tư duy định hướng sản phẩm
 
-We are passionate about building amazing products that offer our end users the most attractive and rewarding experiences. Through cross-functional and interdisciplinary sharing and communication, every member can take pride in having contributed to the products and services we deliver to the world.
+Chúng tôi đam mê xây dựng những sản phẩm tuyệt vời mang đến cho người dùng những trải nghiệm hấp dẫn và bổ ích nhất. Bằng việc chia sẻ và giao tiếp giữa các bộ phận chức năng liên quan, mọi thành viên có thể tự hào vì đã đóng góp vào các sản phẩm và dịch vụ mà chúng tôi cung cấp cho thế giới.
 
-### Diversity
+### Đa dạng
 
-We are still a young and small team with around 20 people, but we are proud of our diversity. Our team is international (Vietnamese, Japanese, American, Italian, and French), located in Singapore (headquarter), Vietnam, and Japan. Sometimes, the cultural difference is tough, but we embrace and leverage it to build a strong organization.
+Chúng tôi vẫn là một đội trẻ và nhỏ với khoảng 20 người, nhưng chúng tôi tự hào với sự đa dạng của mình. Nhóm chúng tôi đa quốc gia (Việt Nam, Nhật Bản, Mỹ, Ý và Pháp) đặt trụ sở chính tại Singapore, chi nhánh tại Việt Nam và Nhật Bản. Đôi khi, sự khác biệt về văn hóa là điều khó khăn, nhưng chúng tôi nắm bắt và tận dụng nó để xây dựng một tổ chức vững mạnh.
 
-## We are hiring!
-Credify is working with several local financial institutions in Vietnam, providing embedded finance platform.
-Our vision is to be a world-leading embedded finance platform. If this vision speaks to you, [join our team](https://credify.notion.site/Careers-at-Credify-0bb5ca929661488fa26100b655472739) today!
+
+## Chúng tôi đang tuyển dụng!
+
+Credify đang làm việc với một số tổ chức tài chính trong nước, cung cấp nền tảng tài chính nhúng tại Việt Nam. Tầm nhìn của chúng tôi là trở thành một nền tảng tài chính nhúng hàng đầu thế giới. Nếu tầm nhìn này có ý nghĩa lớn với bạn, [hãy gia nhập với chúng tôi](https://credify.notion.site/Careers-at-Credify-0bb5ca929661488fa26100b655472739) hôm nay!
